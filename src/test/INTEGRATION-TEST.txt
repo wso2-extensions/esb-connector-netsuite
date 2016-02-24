@@ -23,41 +23,41 @@ STEPS:
 		 	 
  3. Update the Netsuite properties file at location "{NETSUITE_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config/" as below.
  
-      i) apiUrl - Use https://webservices.na1.netsuite.com/services/NetSuitePort_2014_1
+      i)    apiUrl                                     - Use https://webservices.na1.netsuite.com/services/NetSuitePort_2014_1
 	
-	 ii) email - Use the email address that is used to create the account (this also can be an email of the added user that is described under step 2)
+      ii)   email                                      - Use the email address that is used to create the account (this also can be an email of the added user that is described under step 2)
 	
-    iii) password - Use the password of the user.
+      iii)  password                                   - Use the password of the user.
    
-     iv) account - Use the account Id.
+      iv)   account                                    - Use the account Id.
 	 
-	  v) attachCustomerInternalId - Use an internal ID of a customer.
+      v)    attachCustomerInternalId                   - Use an internal ID of a customer.
 	  
-	 vi) attachContactInternalId - Use an internal ID of a contact.
+      vi)   attachContactInternalId                    - Use an internal ID of a contact.
 	   
-    vii) customerNameMandatory - Specify a desired name for the Customer.
+      vii)  customerNameMandatory                      - Specify a desired name for the Customer.
 	
-   viii) customerNameOptional - Specify a different name for the Customer.
+      viii) customerNameOptional                       - Specify a different name for the Customer.
 	 
-	 ix) customerNameUpdated - Specify a different name for the Customer which needs to be updated.
+      ix)   customerNameUpdated                        - Specify a different name for the Customer which needs to be updated.
 	 
-      x) companyName - Specify a desired name for the Company.
+      x)    companyName                                - Specify a desired name for the Company.
 	
-	 xi) companyNameUpdated - Specify a different name for the Company which needs to be updated.
+      xi)   companyNameUpdated                         - Specify a different name for the Company which needs to be updated.
 	 
-    xii) subsidiaryId	- Specify a valid subsidiary ID.
+      xii)  subsidiaryId	                       - Specify a valid subsidiary ID.
 
-   xiii) customerEmail - Provide a valid email address as the email of the customer.
+      xiii) customerEmail                              - Provide a valid email address as the email of the customer.
 
-    xiv) customerComment - Provide a desired customer comment.
+      xiv)  customerComment                            - Provide a desired customer comment.
 
-     xv) customerUrl - Provide a desired customer Url.
+      xv)   customerUrl                                - Provide a desired customer Url.
 
-    xvi) getSelectValueFilterByInternalId - The internal ID of a filterBy field.
+      xvi)  getSelectValueFilterByInternalId           - The internal ID of a filterBy field.
    
-   xvii) getItemAvailabilityInventoryItemInternalId - Internal ID of an Inventory Item.
+      xvii) getItemAvailabilityInventoryItemInternalId - Internal ID of an Inventory Item.
    
-  xviii) getItemAvailabilityLastQtyAvailableChange - A valid past date should be provided in the correct format.(e.g : 2014-04-20T16:09:55.000-07:00).
+      xviii) getItemAvailabilityLastQtyAvailableChange - A valid past date should be provided in the correct format.(e.g : 2014-04-20T16:09:55.000-07:00).
   
    NOTE : Modify the values of vii), viii), ix) before each run.
     
