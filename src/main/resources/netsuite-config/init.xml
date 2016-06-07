@@ -35,6 +35,7 @@
     <parameter name="roleExternalId" description="External ID of the role.A Header parameter."/>
     <parameter name="roleType" description="Type of the role.A Header parameter."/>
     <parameter name="roleName" description="Name of the role.A Header parameter."/>
+    <parameter name="blocking" description="Set to true to perform the blocking invocations to Netsuite."/>
     <sequence>
         <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
         <property name="uri.var.warningAsError" expression="$func:warningAsError"/>
@@ -52,6 +53,7 @@
         <property name="uri.var.roleExternalId" expression="$func:roleExternalId"/>
         <property name="uri.var.roleType" expression="$func:roleType"/>
         <property name="uri.var.roleName" expression="$func:roleName"/>
+        <property name="netsuiteBlocking" expression="$func:blocking"/>
         <header name="To" expression="get-property('uri.var.apiUrl')"/>
     </sequence>
 </template>
