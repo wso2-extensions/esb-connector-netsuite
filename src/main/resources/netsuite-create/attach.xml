@@ -75,11 +75,22 @@
             </args>
         </payloadFactory>
         <header name="Action" value="attach"/>
-        <call>
-            <endpoint>
-                <default format="soap11"/>
-            </endpoint>
-        </call>
+        <filter source="$ctx:netsuiteBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <default format="soap11"/>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <default format="soap11"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
         <!-- Remove response custom header information -->
         <header name="X-Powered-By" scope="transport" action="remove"/>
         <header name="P3P" scope="transport" action="remove"/>

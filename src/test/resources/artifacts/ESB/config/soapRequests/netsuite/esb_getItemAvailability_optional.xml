@@ -26,8 +26,7 @@
                                             type="inventoryItem">
                     </platformCore:recordRef>
                 </platformCore:item>
-                <platformCore:lastQtyAvailableChange>%s(getItemAvailabilityLastQtyAvailableChange)
-                </platformCore:lastQtyAvailableChange>
+                <platformCore:lastQtyAvailableChange>%s(getItemAvailabilityLastQtyAvailableChange)</platformCore:lastQtyAvailableChange>
             </platformMsgs:itemAvailabilityFilter>
         </urn:itemAvailabilityFilter>
     </soapenv:Body>
