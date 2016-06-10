@@ -52,7 +52,7 @@ public class NetsuiteConnectorIntegrationTest extends
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("netsuite-connector-1.0.1-SNAPSHOT");
+        init("netsuite-connector-1.0.1");
 
         apiEndPoint = connectorProperties.getProperty("apiUrl");
     }
