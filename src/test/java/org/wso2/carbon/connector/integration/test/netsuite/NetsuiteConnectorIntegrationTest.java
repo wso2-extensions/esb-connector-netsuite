@@ -52,7 +52,15 @@ public class NetsuiteConnectorIntegrationTest extends
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("netsuite-connector-1.0.2-SNAPSHOT");
+        String connectorName = System.getProperty("connector_name") + "-connector-" +
+                System.getProperty("connector_version") + ".zip";
+        init(connectorName);
+
+        System.setProperty("javax.net.ssl.trustStore","/home/kesavan/Documents/conHack/esb-connector-netsuite/repository/wso2ei-6.1.1/repository/resources/security/client-truststore.jks");
+        System.setProperty("javax.net.ssl.trustStorePassword","wso2carbon");
+
+        System.setProperty("javax.net.ssl.keyStore","/home/kesavan/Documents/conHack/esb-connector-netsuite/repository/wso2ei-6.1.1/repository/resources/security/wso2carbon.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword","wso2carbon");
 
         apiEndPoint = connectorProperties.getProperty("apiUrl");
     }
