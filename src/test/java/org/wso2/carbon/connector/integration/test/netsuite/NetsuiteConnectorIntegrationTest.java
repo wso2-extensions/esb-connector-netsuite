@@ -52,17 +52,19 @@ public class NetsuiteConnectorIntegrationTest extends
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
+        addCertificatesToEIKeyStore("client-truststore.jks", "wso2carbon");
         String connectorName = System.getProperty("connector_name") + "-connector-" +
                 System.getProperty("connector_version") + ".zip";
         init(connectorName);
-
-        System.setProperty("javax.net.ssl.trustStore","/home/kesavan/Documents/conHack/esb-connector-netsuite/repository/wso2ei-6.1.1/repository/resources/security/client-truststore.jks");
-        System.setProperty("javax.net.ssl.trustStorePassword","wso2carbon");
-
-        System.setProperty("javax.net.ssl.keyStore","/home/kesavan/Documents/conHack/esb-connector-netsuite/repository/wso2ei-6.1.1/repository/resources/security/wso2carbon.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword","wso2carbon");
+        getApiConfigProperties();
 
         apiEndPoint = connectorProperties.getProperty("apiUrl");
+        connectorProperties.put("customerNameMandatory", connectorProperties.getProperty("customerNameMandatory")+
+                System.currentTimeMillis());
+        connectorProperties.put("customerNameOptional", connectorProperties.getProperty("customerNameOptional")+
+                System.currentTimeMillis());
+        connectorProperties.put("customerNameUpdated", connectorProperties.getProperty("customerNameUpdated")+
+                System.currentTimeMillis());
     }
 
     /**
@@ -505,21 +507,33 @@ public class NetsuiteConnectorIntegrationTest extends
     @Test(priority = 1, groups = {"wso2.esb"}, description = "Netsuite {attach} integration test with mandatory parameters.")
     public void testAttachWithMandatoryParameters() throws Exception {
 
+        String apiEndPoint = connectorProperties.getProperty("apiUrl");
         Map<String, String> nameSpaceMap = new HashMap<String, String>();
         nameSpaceMap.put("ns", "urn:messages_2014_1.platform.webservices.netsuite.com");
         nameSpaceMap.put("platformCore", "urn:core_2014_1.platform.webservices.netsuite.com");
+        nameSpaceMap.put("listRel", "urn:relationships_2014_1.lists.webservices.netsuite.com");
+
+        SOAPEnvelope apiContactSoapResponse = sendSOAPRequest(apiEndPoint, "api_search_contact.xml", null, "search",
+                SOAP_HEADER_XPATH_EXP, SOAP_BODY_XPATH_EXP);
+
+        OMElement apiContactRequestElement = AXIOMUtil.stringToOM(apiContactSoapResponse.getBody().toString());
+
+        String xpathString = "string(/soapenv:Body/ns:searchResponse/platformCore:searchResult/platformCore:recordList[1]/platformCore:record/@internalId)";
+        String contactInternalId = xPathEvaluate(apiContactRequestElement, xpathString, nameSpaceMap).toString();
+
+        connectorProperties.put("attachContactInternalId",contactInternalId);
 
         SOAPEnvelope esbSoapResponse = sendSOAPRequest(proxyUrl, "esb_attach_mandatory.xml", null, "mediate",
                 SOAP_HEADER_XPATH_EXP, SOAP_BODY_XPATH_EXP);
 
-        String apiEndPoint = connectorProperties.getProperty("apiUrl");
+
         SOAPEnvelope apiSoapResponse = sendSOAPRequest(apiEndPoint, "api_attach_mandatory.xml", null, "attach",
                 SOAP_HEADER_XPATH_EXP, SOAP_BODY_XPATH_EXP);
 
         OMElement esbRequestElement = AXIOMUtil.stringToOM(esbSoapResponse.getBody().toString());
         OMElement apiRequestElement = AXIOMUtil.stringToOM(apiSoapResponse.getBody().toString());
 
-        String xpathString = "string(/soapenv:Body/ns:updateListResponse/ns:writeResponseList/ns:writeResponse/platformCore:status/@isSuccess)";
+        xpathString = "string(/soapenv:Body/ns:updateListResponse/ns:writeResponseList/ns:writeResponse/platformCore:status/@isSuccess)";
         Boolean isEsbSuccess = Boolean.valueOf((String) xPathEvaluate(esbRequestElement, xpathString, nameSpaceMap));
         Boolean isApiSuccess = Boolean.valueOf((String) xPathEvaluate(apiRequestElement, xpathString, nameSpaceMap));
 

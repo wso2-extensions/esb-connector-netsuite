@@ -12,17 +12,21 @@ Pre-requisites:
 Tested Platform: 
 
  - Microsoft WINDOWS V-7
- - UBUNTU 13.04
- - WSO2 ESB 4.9.0
+ - UBUNTU 16.04
+ - WSO2 EI 6.3.0
  
 STEPS:
 
- 1. Make sure the ESB 4.9.0 zip file with latest patches available at "{NETSUITE_CONNECTOR_HOME}/repository/"
+ 1. Make sure the EI 6.3.0 zip file with latest patches available at "{NETSUITE_CONNECTOR_HOME}/repository/"
 		
  2. If you want to add a new user to the Netsuite account, refer the Netsuite Help documentation at https://system.na1.netsuite.com/help/helpcenter/en_US/Output/Help/EmployeeManagement/Employees/AddingEmployee.html
-		 	 
- 3. Update the Netsuite properties file at location "{NETSUITE_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config/" as below.
- 
+
+ 3. Extract the certificate from browser(Mozilla Firefox) by navigating to NetSuite instance url and place it to {EI_Connector_Home}/repositiry/.
+
+ 4. Update the Netsuite properties in the esb-connector-netsuite.properties file at location "{NETSUITE_CONNECTOR_HOME}/repository
+
+ 5. Following are the NetSuite properties used in esb-connector-netsuite.properties and netsuite.properties file at location "{Connector_Home}/src/test/resources/artifacts/ESB/connector/config" to run the integration tests.
+
       i)    apiUrl                                     - Use https://webservices.na1.netsuite.com/services/NetSuitePort_2014_1
 	
       ii)   email                                      - Use the email address that is used to create the account (this also can be an email of the added user that is described under step 2)
@@ -30,38 +34,34 @@ STEPS:
       iii)  password                                   - Use the password of the user.
    
       iv)   account                                    - Use the account Id.
-	 
-      v)    attachCustomerInternalId                   - Use an internal ID of a customer.
-	  
-      vi)   attachContactInternalId                    - Use an internal ID of a contact.
 	   
-      vii)  customerNameMandatory                      - Specify a desired name for the Customer.
+      v)  customerNameMandatory                        - Specify a desired name for the Customer.
 	
-      viii) customerNameOptional                       - Specify a different name for the Customer.
+      vi) customerNameOptional                         - Specify a different name for the Customer.
 	 
-      ix)   customerNameUpdated                        - Specify a different name for the Customer which needs to be updated.
+      vii)   customerNameUpdated                       - Specify a different name for the Customer which needs to be updated.
 	 
-      x)    companyName                                - Specify a desired name for the Company.
+      viii)    companyName                             - Specify a desired name for the Company.
 	
-      xi)   companyNameUpdated                         - Specify a different name for the Company which needs to be updated.
+      ix)   companyNameUpdated                         - Specify a different name for the Company which needs to be updated.
 	 
-      xii)  subsidiaryId	                       - Specify a valid subsidiary ID.
+      x)  subsidiaryId	                               - Specify a valid subsidiary ID.
 
-      xiii) customerEmail                              - Provide a valid email address as the email of the customer.
+      xi) customerEmail                                - Provide a valid email address as the email of the customer.
 
-      xiv)  customerComment                            - Provide a desired customer comment.
+      xii)  customerComment                            - Provide a desired customer comment.
 
-      xv)   customerUrl                                - Provide a desired customer Url.
+      xiii)   customerUrl                              - Provide a desired customer Url.
 
-      xvi)  getSelectValueFilterByInternalId           - The internal ID of a filterBy field.
+      xiv)  getSelectValueFilterByInternalId           - The internal ID of a filterBy field.
    
-      xvii) getItemAvailabilityInventoryItemInternalId - Internal ID of an Inventory Item.
+      xvi) getItemAvailabilityInventoryItemInternalId  - Internal ID of an Inventory Item.
    
-      xviii) getItemAvailabilityLastQtyAvailableChange - A valid past date should be provided in the correct format.(e.g : 2014-04-20T16:09:55.000-07:00).
+      xvii) getItemAvailabilityLastQtyAvailableChange  - A valid past date should be provided in the correct format.(e.g : 2014-04-20T16:09:55.000-07:00).
   
-   NOTE : Modify the values of vii), viii), ix) before each run.
+   NOTE : The values of vii), viii), ix) need to be Unique for each run.
     
  4. Navigate to "{NETSUITE_CONNECTOR_HOME}/" and run the following command.
-      $ mvn clean install
+      $ mvn clean install -Dskip-tests=false
 
 
