@@ -27,7 +27,7 @@
         <urn:attach>
             <attachReferece xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:AttachContactReference"
                             xmlns:ns1="urn:core_2014_1.platform.webservices.netsuite.com">
-                <ns1:attachTo internalId="%s(attachCustomerInternalId)" type="customer" xsi:type="ns1:RecordRef">
+                <ns1:attachTo internalId="%s(addListMandatoryInternalId)" type="customer" xsi:type="ns1:RecordRef">
                     <ns1:name xsi:type="xsd:string">Acera</ns1:name>
                 </ns1:attachTo>
                 <ns1:contact internalId="%s(attachContactInternalId)" xsi:type="ns1:RecordRef"/>
