@@ -1,0 +1,23 @@
+{
+    "name": "NetSuite",
+    "owner": "WSO2",
+    "category": "E-commerce",
+    "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/NetSuite+Connector",
+    "description": "The NetSuite connector allows you to access the exposed API through the WSO2 ESB. SuiteTalk exposes NetSuite as a data source for programmatic access. Most of the data operations developers expect such as insert, update, delete, and select/search are supported. There are also a number of operations that are available as supporting operations for data read/write operations. With the SuiteTalk platform, you can integrate existing business functions within your organization to NetSuite through the use of Web services. Web services can be invoked in real-time to perform operations such as retrieving, adding, updating, and deleting data. The connector uses the NetSuite SOAP API reference (Web services standard operation).",
+    "status": "Active",
+    "labels": [
+        "E-commerce"
+    ],
+    "releases": [
+        {
+            "tagName": "1.0.1",
+            "products": [
+                "EI 6.4.0",
+                "EI 6.3.0",
+                "ESB 5.0.0",
+                "ESB 4.9.0",
+                "ESB 4.8.1"
+            ]
+        }
+    ]
+}
